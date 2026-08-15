@@ -4,9 +4,12 @@ const cors = require("cors");
 require("dotenv").config();
 
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
+const User = require("./models/User");
 const Project = require("./models/Project");
 const Log = require("./models/Log");
 const authenticateApiKey = require("./middleware/apiKey");
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
