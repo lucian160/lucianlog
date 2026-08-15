@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("./models/User");
 const Project = require("./models/Project");
 const Log = require("./models/Log");
