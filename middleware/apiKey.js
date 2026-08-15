@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const Project = require("../models/Project");
 
 const authenticateApiKey = async (req, res, next) => {
@@ -10,8 +11,13 @@ const authenticateApiKey = async (req, res, next) => {
       });
     }
 
+    const apiKeyHash = crypto
+      .createHash("sha256")
+      .update(apiKey)
+      .digest("hex");
+
     const project = await Project.findOne({
-      apiKey,
+      apiKeyHash,
       active: true
     });
 
@@ -25,7 +31,10 @@ const authenticateApiKey = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.error("❌ API key authentication failed:", error.message);
+    console.error(
+      "❌ API key authentication failed:",
+      error.message
+    );
 
     res.status(500).json({
       message: "Authentication failed"

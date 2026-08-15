@@ -8,11 +8,16 @@ const projectSchema = new mongoose.Schema(
       trim: true
     },
 
-    apiKey: {
+    apiKeyHash: {
       type: String,
       required: true,
-      unique: true,
-      index: true
+      unique: true
+    },
+
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
     },
 
     active: {
