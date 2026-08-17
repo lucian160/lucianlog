@@ -38,6 +38,61 @@ router.post("/", authenticateApiKey, async (req, res) => {
   }
 });
 
+// GET DASHBOARD SUMMARY
+router.get("/summary", authenticateApiKey, async (req, res) => {
+  try {
+    const projectId = req.project._id;
+
+    const totalLogs = await Log.countDocuments({
+      projectId
+    });
+
+    const errorCount = await Log.countDocuments({
+      projectId,
+      level: "error"
+    });
+
+    const warningCount = await Log.countDocuments({
+      projectId,
+      level: "warn"
+    });
+
+    const infoCount = await Log.countDocuments({
+      projectId,
+      level: "info"
+    });
+
+    const latestLog = await Log.findOne({
+      projectId
+    }).sort({
+      createdAt: -1
+    });
+
+    const errorRate = totalLogs === 0
+      ? 0
+      : Number(((errorCount / totalLogs) * 100).toFixed(2));
+
+    res.json({
+      totalLogs,
+      errors: errorCount,
+      warnings: warningCount,
+      info: infoCount,
+      errorRate,
+      latestLog
+    });
+
+  } catch (error) {
+    console.error(
+      "❌ Failed to fetch dashboard summary:",
+      error.message
+    );
+
+    res.status(500).json({
+      message: "Failed to fetch dashboard summary"
+    });
+  }
+});
+
 // GET PROJECT LOG STATISTICS
 router.get("/stats", authenticateApiKey, async (req, res) => {
   try {
