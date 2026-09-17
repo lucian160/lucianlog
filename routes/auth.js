@@ -84,6 +84,12 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.error("❌ Registration failed:", error.message);
 
+    if (error.message === "API key is invalid") {
+      return res.status(503).json({
+        message: "Account created, but the verification email could not be sent. Please contact support."
+      });
+    }
+
     res.status(500).json({
       message: "Registration failed"
     });

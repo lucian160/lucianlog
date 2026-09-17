@@ -15,6 +15,8 @@ const { createRateLimiter } = require("./middleware/rateLimiter");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.set("trust proxy", 1);
+
 const firewallMiddleware = createFirewallMiddleware({
   enabled: process.env.LUCIAN_FIREWALL_ENABLED === "true",
   allowedIps: (process.env.LUCIAN_ALLOWED_IPS || "").split(",").map((ip) => ip.trim()).filter(Boolean),
