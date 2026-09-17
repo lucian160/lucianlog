@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucian Logs Documentation</title>
+  <link rel="stylesheet" href="/css/landing.css" />
+  <style>
+    body {
+      background: #07111f;
+      color: #edf6ff;
+    }
+
+    .doc-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .doc-shell {
+      background: rgba(13, 27, 45, 0.8);
+      border: 1px solid rgba(160, 190, 218, 0.16);
+      border-radius: 20px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .doc-header {
+      padding: 36px 32px 24px;
+      border-bottom: 1px solid rgba(160, 190, 218, 0.12);
+      background: rgba(18, 37, 59, 0.72);
+    }
+
+    .doc-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .doc-header h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(2rem, 3vw, 3rem);
+    }
+
+    .doc-header p {
+      margin: 0;
+      color: #9db0c5;
+      max-width: 760px;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .doc-sidebar {
+      position: sticky;
+      top: 24px;
+      align-self: start;
+      background: rgba(9, 22, 41, 0.7);
+      border-right: 1px solid rgba(160, 190, 218, 0.12);
+      padding: 24px 18px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+    }
+
+    .doc-sidebar h3 {
+      margin: 0 0 16px;
+      color: #51d6c3;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .doc-sidebar a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      color: #dfeefb;
+      text-decoration: none;
+      background: transparent;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .doc-sidebar a:hover {
+      background: rgba(81, 214, 195, 0.08);
+      transform: translateX(2px);
+    }
+
+    .doc-quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .doc-quick-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(160, 190, 218, 0.14);
+      color: #edf6ff;
+      text-decoration: none;
+      background: rgba(81, 214, 195, 0.04);
+    }
+
+    .doc-content {
+      padding: 30px 32px 40px;
+    }
+
+    .doc-section {
+      margin-bottom: 30px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(160, 190, 218, 0.12);
+    }
+
+    .doc-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .doc-section h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+    }
+
+    .doc-section p,
+    .doc-section li,
+    .doc-section code {
+      color: #dfeefb;
+      line-height: 1.8;
+    }
+
+    .doc-section ul {
+      padding-left: 22px;
+    }
+
+    .doc-section code {
+      background: rgba(81, 214, 195, 0.08);
+      border: 1px solid rgba(81, 214, 195, 0.12);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.95em;
+    }
+
+    .doc-section pre {
+      background: #081422;
+      border: 1px solid rgba(160, 190, 218, 0.12);
+      border-radius: 12px;
+      padding: 18px;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 780px) {
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .doc-sidebar {
+        position: static;
+        max-height: none;
+        border-right: none;
+        border-bottom: 1px solid rgba(160, 190, 218, 0.12);
+      }
+
+      .doc-sidebar nav {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .doc-sidebar a {
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc-page">
+    <div class="doc-shell">
+      <header class="doc-header">
+        <div class="doc-topbar">
+          <a href="/" class="logo" style="display: inline-flex;">
+            <span class="logo-mark">◆</span>
+            <span>Lucian Logs</span>
+          </a>
+
+          <div class="doc-quick-links">
+            <a href="/how-it-works.html">How it works</a>
+            <a href="/register.html">Create account</a>
+          </div>
+        </div>
+
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Documentation</div>
+        <h1>How to use Lucian Logs</h1>
+        <p>
+          Lucian Logs helps developers capture application activity, inspect logs, and understand errors from one place.
+          This page explains the setup flow and the basic usage model for new users.
+        </p>
+      </header>
+
+      <div class="doc-grid">
+        <aside class="doc-sidebar">
+          <h3>On this page</h3>
+          <nav>
+            <a href="#overview">Overview</a>
+            <a href="#install">Install</a>
+            <a href="#configure">Configure</a>
+            <a href="#project-flow">Project flow</a>
+            <a href="#send-logs">Send logs</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#monitoring">Monitoring</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+        </aside>
+
+        <main class="doc-content">
+          <section class="doc-section" id="overview">
+            <h2>Overview</h2>
+            <p>
+              Lucian Logs is a simple monitoring platform for collecting and searching application logs.
+              The main workflow is: create an account, create a project, generate an API key, send logs from your app,
+              and then view the results in the dashboard.
+            </p>
+            <p>
+              Each project represents an application or service you want to track. Logs are organized by project and can be
+              filtered by message, status code, level, endpoint, or other useful metadata.
+            </p>
+          </section>
+
+          <section class="doc-section" id="install">
+            <h2>Install</h2>
+            <p>Run the following commands in the project folder:</p>
+            <pre><code>npm install
+cp .env.example .env</code></pre>
+            <p>Then update the values in <code>.env</code> for your MongoDB URL and other required settings.</p>
+          </section>
+
+          <section class="doc-section" id="configure">
+            <h2>Configure the environment</h2>
+            <p>Minimum settings usually include:</p>
+            <ul>
+              <li><code>PORT</code> — the server port</li>
+              <li><code>MONGO_URI</code> — the MongoDB connection string</li>
+              <li><code>JWT_SECRET</code> — your secure secret for authentication</li>
+              <li><code>CORS_ORIGIN</code> — the allowed frontend origin</li>
+            </ul>
+            <p>
+              Optional settings include email delivery through Resend, firewall rules, and monitoring configuration.
+            </p>
+            <pre><code>PORT=5000
+MONGO_URI=mongodb://localhost:27017/lucianlogs
+JWT_SECRET=replace_with_a_secure_secret
+CORS_ORIGIN=http://localhost:5000</code></pre>
+          </section>
+
+          <section class="doc-section" id="project-flow">
+            <h2>Project flow</h2>
+            <p>The typical flow looks like this:</p>
+            <ol>
+              <li>Create an account and verify your email.</li>
+              <li>Create a project from the dashboard.</li>
+              <li>Copy the generated project API key.</li>
+              <li>Use that key in your app to submit log data.</li>
+              <li>Open the dashboard and inspect errors, warnings, and recent activity.</li>
+            </ol>
+            <p>
+              Keep the project API key private. It should not be placed in public frontend code or a public repository.
+            </p>
+          </section>
+
+          <section class="doc-section" id="send-logs">
+            <h2>Send logs from your app</h2>
+            <p>Logs are sent to the API using the project API key in the request header:</p>
+            <pre><code>fetch("/api/logs", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "YOUR_PROJECT_API_KEY"
+  },
+  body: JSON.stringify({
+    level: "error",
+    message: "Payment request failed",
+    statusCode: 500,
+    endpoint: "/api/payments",
+    method: "POST"
+  })
+});</code></pre>
+            <p>
+              This makes Lucian Logs a place where your app can send operational information, errors, and important events for tracking.
+            </p>
+          </section>
+
+          <section class="doc-section" id="dashboard">
+            <h2>Use the dashboard</h2>
+            <p>The dashboard provides access to:</p>
+            <ul>
+              <li>Project activity</li>
+              <li>Recent log entries</li>
+              <li>Error and warning summaries</li>
+              <li>Search and filtering tools</li>
+              <li>Project and user management</li>
+            </ul>
+            <p>
+              You can search by message, endpoint, method, log level, or HTTP status to investigate an issue faster.
+            </p>
+          </section>
+
+          <section class="doc-section" id="monitoring">
+            <h2>Monitoring and uptime</h2>
+            <p>
+              Lucian Logs also exposes a health endpoint so monitoring tools such as UptimeRobot can check that the service is running.
+            </p>
+            <pre><code>http://localhost:5000/health</code></pre>
+            <p>
+              This endpoint returns a simple JSON response with the application status and timestamp, making it easy to verify that the app is online.
+            </p>
+          </section>
+
+          <section class="doc-section" id="faq">
+            <h2>Frequently asked questions</h2>
+            <ul>
+              <li><strong>Do I need MongoDB?</strong> Yes. Lucian Logs stores project and log data in MongoDB.</li>
+              <li><strong>Can I use this without email setup?</strong> Yes, but email verification and password reset may print OTP codes in the server terminal instead of sending them.</li>
+              <li><strong>Where do I send logs from?</strong> Use the project API key and send requests to the log API endpoint.</li>
+              <li><strong>What is the health endpoint used for?</strong> It lets uptime and monitoring tools confirm that your app is still online.</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

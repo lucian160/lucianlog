@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Lucian Logs Works</title>
+  <link rel="stylesheet" href="/css/landing.css" />
+  <style>
+    body {
+      background: #07111f;
+      color: #edf6ff;
+    }
+
+    .how-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .how-shell {
+      background: rgba(13, 27, 45, 0.8);
+      border: 1px solid rgba(160, 190, 218, 0.16);
+      border-radius: 20px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      padding: 40px 28px 28px;
+    }
+
+    .how-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .how-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .page-title {
+      margin-bottom: 18px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .step-card {
+      background: rgba(18, 37, 59, 0.7);
+      border: 1px solid rgba(160, 190, 218, 0.12);
+      border-radius: 16px;
+      padding: 22px 18px;
+    }
+
+    .step-number {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #51d6c3;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .step-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: #dfeefb;
+      line-height: 1.7;
+    }
+
+    .diagram {
+      margin-top: 32px;
+      background: rgba(9, 22, 41, 0.8);
+      border: 1px solid rgba(160, 190, 218, 0.12);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .diagram p {
+      color: #9db0c5;
+      margin-top: 0;
+    }
+
+    .diagram-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .box {
+      min-width: 180px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: rgba(81, 214, 195, 0.08);
+      border: 1px solid rgba(81, 214, 195, 0.18);
+      text-align: center;
+      color: #edf6ff;
+      font-weight: 600;
+    }
+
+    .arrow {
+      font-size: 30px;
+      color: #51d6c3;
+      line-height: 1;
+    }
+
+    .cta-row {
+      margin-top: 32px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .how-topbar {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="how-page">
+    <div class="how-shell">
+      <div class="how-topbar">
+        <a href="/" class="logo" style="display: inline-flex;">
+          <span class="logo-mark">◆</span>
+          <span>Lucian Logs</span>
+        </a>
+
+        <div class="how-actions">
+          <a href="/documentation.html" class="btn btn-ghost">Documentation</a>
+          <a href="/register.html" class="btn btn-primary">Create account</a>
+        </div>
+      </div>
+
+      <div class="eyebrow page-title"><span class="eyebrow-dot"></span> How it works</div>
+      <h1 style="font-size: clamp(2rem, 3vw, 3rem); margin: 0 0 12px;">From your app to your dashboard.</h1>
+      <p style="margin: 0; max-width: 760px; color: #9db0c5; line-height: 1.8;">
+        Lucian Logs collects data from your services, stores it securely, and makes it easy to inspect later with filters, summaries, and dashboards.
+      </p>
+
+      <div class="flow">
+        <article class="step-card">
+          <div class="step-number">01</div>
+          <h3>Create a project</h3>
+          <p>Log in, create a project, and get a unique API key for that app or service.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">02</div>
+          <h3>Send logs</h3>
+          <p>Your application sends log events to the Lucian Logs API using the project key.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">03</div>
+          <h3>Store and organize</h3>
+          <p>The server validates the key, stores the log data, and organizes it by project.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">04</div>
+          <h3>Monitor and fix</h3>
+          <p>The dashboard shows recent activity so you can identify issues and respond faster.</p>
+        </article>
+      </div>
+
+      <div class="diagram">
+        <p>Simple flow</p>
+        <div class="diagram-boxes">
+          <div class="box">Your app</div>
+          <div class="arrow">→</div>
+          <div class="box">Lucian Logs API</div>
+          <div class="arrow">→</div>
+          <div class="box">MongoDB</div>
+          <div class="arrow">→</div>
+          <div class="box">Dashboard</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="/documentation.html" class="btn btn-primary">Read documentation</a>
+        <a href="/register.html" class="btn btn-ghost">Create account</a>
+      </div>
+
+      <div class="diagram" style="margin-top: 36px;">
+        <p>Frequently asked questions</p>
+        <div class="flow" style="margin-top: 12px; grid-template-columns: repeat(2, minmax(0, 1fr));">
+          <article class="step-card">
+            <div class="step-number">FAQ</div>
+            <h3>Why do I need API keys?</h3>
+            <p>They let each project securely authenticate its own log submissions without exposing shared credentials.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">FAQ</div>
+            <h3>Can I monitor uptime?</h3>
+            <p>Yes. Use the health endpoint to monitor the app through tools like UptimeRobot or a custom checker.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

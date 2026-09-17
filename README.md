@@ -37,6 +37,123 @@ The platform is designed to give developers a centralized view of application ac
 * Audit logging for administrative actions
 * Health check endpoint
 
+## How Lucian Logs Works
+
+Lucian Logs is meant to help you collect, monitor, and investigate application activity from one place.
+
+The basic flow is simple:
+
+```text
+1. Create an account
+2. Verify your email
+3. Create a project
+4. Copy the project API key
+5. Connect your app or service to Lucian Logs
+6. Send logs with your API key
+7. View, filter, and analyze logs from the dashboard
+```
+
+### Core idea
+
+Lucian Logs has two main parts:
+
+- The user side: registration, login, dashboard, project management, and admin controls
+- The monitoring side: projects, API keys, log ingestion, log search, and summary analytics
+
+Each project acts like a separate app or service you want to monitor. When you create a project, Lucian Logs generates a unique API key. Your app sends log events to the server using that key. The server validates the key, stores the log data, and then makes it available in the dashboard and logs pages.
+
+### Typical usage flow
+
+```text
+Your app
+   ↓ sends logs using project API key
+Lucian Logs API
+   ↓ validates API key and stores records
+MongoDB
+   ↓ provides data to dashboard and logs pages
+User sees metrics, errors, warnings, and search results
+```
+
+This means the system works like a central logging backend for your services. You do not manually enter logs in the database; your application sends them through the API, and Lucian Logs organizes them for you.
+
+## Documentation
+
+### Quick start for new users
+
+1. Install the project dependencies:
+
+```bash
+npm install
+```
+
+2. Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+3. Update the environment variables in `.env` with your MongoDB connection and optional email settings.
+
+4. Start the application:
+
+```bash
+npm start
+```
+
+5. Open the app in the browser:
+
+```text
+http://localhost:5000
+```
+
+### Where users go in the app
+
+The app consists of several pages, including:
+
+- Login page
+- Registration page
+- Email verification page
+- Dashboard page
+- Projects page
+- Logs page
+- Settings page
+- Admin dashboard
+
+Users usually start by registering an account, verifying the email, and creating a project. After that, they use the project API key to connect their app to Lucian Logs.
+
+### What the project API key is for
+
+The project API key should be treated like a password. It is used to authenticate log submissions from your app. If someone gets this key, they may be able to send fake logs to your project.
+
+Use it only inside your server environment and do not expose it in frontend code or public repositories.
+
+### Who uses the app
+
+Lucian Logs is generally used by:
+
+- Developers monitoring real application errors
+- Teams tracking app activity across services
+- Admins reviewing access and firewall approvals
+- Operators checking health and uptime status
+
+### Example real-world workflow
+
+```text
+A backend service crashes during checkout
+   ↓
+The app sends an error log to Lucian Logs
+   ↓
+The developer opens the Logs page
+   ↓
+A search for the endpoint or error message narrows the issue
+   ↓
+The dashboard shows recent errors and activity
+   ↓
+The developer fixes the bug and deploys again
+```
+
+This is the simplest way to understand the purpose of Lucian Logs: it turns scattered application events into a searchable, centralized record that your team can inspect quickly.
+
 ## Requirements
 
 Before running Lucian Logs, install:

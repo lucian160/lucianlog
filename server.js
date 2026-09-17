@@ -8,7 +8,6 @@ const authRoutes = require("./routes/auth");
 const projectRoutes = require("./routes/projects");
 const logRoutes = require("./routes/logs");
 const adminRoutes = require("./routes/admin");
-const healthRoutes = require("./routes/health");
 const notificationRoutes = require("./routes/notifications");
 const { createFirewallMiddleware } = require("./middleware/firewall");
 const { createRateLimiter } = require("./middleware/rateLimiter");
@@ -42,12 +41,21 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json({ limit: "1mb" }));
+
+app.get(["/health", "/healthz"], (req, res) => {
+  res.status(200).json({
+    ok: true,
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
 app.use(firewallMiddleware);
 app.use(apiLimiter);
 app.use(express.static("public"));
 
 // Routes
-app.use("/health", healthRoutes);
 app.use("/api/auth", authLimiter, authRoutes);
 app.use("/api/projects", authLimiter, projectRoutes);
 app.use("/api/logs", apiLimiter, logRoutes);
