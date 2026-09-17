@@ -20,6 +20,54 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       minlength: 8
+    },
+
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
+    },
+
+    emailVerified: {
+      type: Boolean,
+      default: false
+    },
+
+    verificationOtp: {
+      type: String,
+      default: null,
+      trim: true
+    },
+
+    verificationOtpExpiresAt: {
+      type: Date,
+      default: null
+    },
+
+    otp: {
+      type: String,
+      default: null,
+      trim: true
+    },
+
+    otpExpiresAt: {
+      type: Date,
+      default: null
+    },
+
+    lastLoginAt: {
+      type: Date,
+      default: null
+    },
+
+    failedLoginAttempts: {
+      type: Number,
+      default: 0
+    },
+
+    lockedUntil: {
+      type: Date,
+      default: null
     }
   },
   {

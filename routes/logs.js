@@ -2,6 +2,7 @@ const express = require("express");
 
 const Log = require("../models/Log");
 const authenticateApiKey = require("../middleware/apiKey");
+const { buildLogFilter } = require("../utils/logQuery");
 
 const router = express.Router();
 
@@ -229,19 +230,12 @@ router.get("/", authenticateApiKey, async (req, res) => {
       100
     );
 
-    const filter = {
-      projectId: req.project._id
-    };
-
-    // Filter by level
-    if (req.query.level) {
-      filter.level = req.query.level;
-    }
-
-    // Filter by status code
-    if (req.query.statusCode) {
-      filter.statusCode = Number(req.query.statusCode);
-    }
+    const filter = buildLogFilter({
+      projectId: req.project._id,
+      level: req.query.level,
+      statusCode: req.query.statusCode,
+      search: req.query.search
+    });
 
     const total = await Log.countDocuments(filter);
 

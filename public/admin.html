@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucian Logs — Admin</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span>◆</span> Lucian Logs</div>
+    <nav>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/logs.html">Logs</a>
+      <a href="/api-keys.html">API Keys</a>
+      <a href="/settings.html">Settings</a>
+      <a href="/admin.html" class="active">Admin</a>
+    </nav>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ADMIN</p>
+        <h1>Security Console</h1>
+      </div>
+    </header>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Pending approvals</span>
+        <strong id="pendingApprovals">—</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Recent errors</span>
+        <strong id="errorWatchCount">—</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Firewall</span>
+        <strong id="firewallState">—</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Status</span>
+        <strong id="summaryStatus">—</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">APPROVALS</p>
+          <h2>Firewall requests</h2>
+        </div>
+      </div>
+      <div id="approvalRequests">
+        <p>Loading firewall approvals...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">HISTORY</p>
+          <h2>Recent firewall activity</h2>
+        </div>
+      </div>
+      <div id="firewallHistory">
+        <p>Loading firewall activity...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">ACCESS</p>
+          <h2>User access</h2>
+        </div>
+      </div>
+      <div id="userAccessList">
+        <p>Loading users...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">NOTIFY</p>
+          <h2>Send user notification</h2>
+        </div>
+      </div>
+
+      <form id="notificationForm" class="auth-form">
+        <div class="form-group">
+          <label for="notificationEmail">User email</label>
+          <input id="notificationEmail" name="notificationEmail" type="email" placeholder="user@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="notificationTitle">Title</label>
+          <input id="notificationTitle" name="notificationTitle" type="text" placeholder="Security notice" required />
+        </div>
+
+        <div class="form-group">
+          <label for="notificationMessage">Message</label>
+          <textarea id="notificationMessage" name="notificationMessage" rows="4" placeholder="Write the message to send..." required></textarea>
+        </div>
+
+        <div class="form-group checkbox-row">
+          <label><input type="checkbox" name="channelEmail" value="email" checked /> Email</label>
+          <label><input type="checkbox" name="channelInApp" value="in_app" checked /> In-app</label>
+        </div>
+
+        <button type="submit" class="primary-btn">Send notification</button>
+      </form>
+
+      <p id="notificationStatus" class="status-message"></p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">ALERTS</p>
+          <h2>Recent system errors</h2>
+        </div>
+      </div>
+      <div id="recentErrors">
+        <p>Loading recent errors...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

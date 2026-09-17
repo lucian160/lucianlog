@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="description"
+    content="Lucian Logs is a lightweight application monitoring and logging platform that helps developers track errors, events, and application health."
+>
+
+<title>Lucian Logs — Monitor your app health</title>
+
+<link rel="stylesheet" href="/css/landing.css">
+
+</head>
+
+<body>
+<div class="page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                <span class="logo-mark">◆</span>
+                <span>Lucian Logs</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it works</a>
+                <a href="#use-cases">Use cases</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="/login.html" class="btn btn-ghost">
+                    Login
+                </a>
+
+                <a href="/register.html" class="btn btn-primary">
+                    Get started
+                </a>
+            </div>
+
+            <button
+                class="mobile-menu-btn"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false"
+                id="mobileMenuBtn"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#use-cases">Use cases</a>
+
+            <div class="mobile-menu-actions">
+                <a href="/login.html" class="btn btn-ghost">
+                    Login
+                </a>
+
+                <a href="/register.html" class="btn btn-primary">
+                    Create account
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        Application monitoring for developers
+                    </div>
+
+                    <h1>
+                        Know what is happening
+                        <span class="highlight">inside your app.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Lucian Logs gives developers a simple place to collect,
+                        inspect, and understand application logs before small
+                        issues become major outages.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a href="/register.html" class="btn btn-primary btn-large">
+                            Start monitoring
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a href="#how-it-works" class="btn btn-ghost btn-large">
+                            See how it works
+                        </a>
+
+                    </div>
+
+                    <div class="hero-note">
+                        <span>✓</span>
+                        Built for modern developers and growing applications
+                    </div>
+
+                </div>
+
+
+                <!-- Dashboard preview -->
+                <div class="hero-visual">
+
+                    <div class="dashboard-window">
+
+                        <div class="window-header">
+
+                            <div class="window-controls">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div class="window-title">
+                                Lucian Logs
+                            </div>
+
+                            <div class="window-status">
+                                <span class="status-dot"></span>
+                                Live
+                            </div>
+
+                        </div>
+
+
+                        <div class="dashboard-body">
+
+                            <aside class="dashboard-sidebar">
+
+                                <div class="sidebar-item active">
+                                    <span>▦</span>
+                                    Overview
+                                </div>
+
+                                <div class="sidebar-item">
+                                    <span>◈</span>
+                                    Projects
+                                </div>
+
+                                <div class="sidebar-item">
+                                    <span>≡</span>
+                                    Logs
+                                </div>
+
+                                <div class="sidebar-item">
+                                    <span>⚠</span>
+                                    Errors
+                                </div>
+
+                                <div class="sidebar-item">
+                                    <span>⚙</span>
+                                    Settings
+                                </div>
+
+                            </aside>
+
+
+                            <div class="dashboard-content">
+
+                                <div class="dashboard-heading">
+
+                                    <div>
+                                        <span class="dashboard-label">
+                                            Overview
+                                        </span>
+
+                                        <h3>
+                                            Application health
+                                        </h3>
+                                    </div>
+
+                                    <span class="health-badge">
+                                        <span class="status-dot"></span>
+                                        All systems operational
+                                    </span>
+
+                                </div>
+
+
+                                <div class="dashboard-metrics">
+
+                                    <div class="dashboard-card">
+
+                                        <span class="card-label">
+                                            Events today
+                                        </span>
+
+                                        <strong>
+                                            24,821
+                                        </strong>
+
+                                        <span class="card-change positive">
+                                            ↑ 12.4%
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="dashboard-card">
+
+                                        <span class="card-label">
+                                            Errors
+                                        </span>
+
+                                        <strong>
+                                            18
+                                        </strong>
+
+                                        <span class="card-change warning">
+                                            3 unresolved
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="dashboard-card">
+
+                                        <span class="card-label">
+                                            Uptime
+                                        </span>
+
+                                        <strong>
+                                            99.9%
+                                        </strong>
+
+                                        <span class="card-change positive">
+                                            This week
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="log-preview">
+
+                                    <div class="log-header">
+
+                                        <div>
+                                            <span class="dashboard-label">
+                                                Recent activity
+                                            </span>
+
+                                            <h4>
+                                                Latest logs
+                                            </h4>
+                                        </div>
+
+                                        <a href="#">
+                                            View all
+                                        </a>
+
+                                    </div>
+
+
+                                    <div class="log-list">
+
+                                        <div class="log-row">
+
+                                            <span class="log-level success">
+                                                INFO
+                                            </span>
+
+                                            <span class="log-message">
+                                                User authentication successful
+                                            </span>
+
+                                            <span class="log-time">
+                                                12s ago
+                                            </span>
+
+                                        </div>
+
+
+                                        <div class="log-row">
+
+                                            <span class="log-level warning">
+                                                WARN
+                                            </span>
+
+                                            <span class="log-message">
+                                                API response slower than expected
+                                            </span>
+
+                                            <span class="log-time">
+                                                48s ago
+                                            </span>
+
+                                        </div>
+
+
+                                        <div class="log-row">
+
+                                            <span class="log-level error">
+                                                ERROR
+                                            </span>
+
+                                            <span class="log-message">
+                                                Payment API request failed
+                                            </span>
+
+                                            <span class="log-time">
+                                                2m ago
+                                            </span>
+
+                                        </div>
+
+
+                                        <div class="log-row">
+
+                                            <span class="log-level success">
+                                                INFO
+                                            </span>
+
+                                            <span class="log-message">
+                                                Background job completed
+                                            </span>
+
+                                            <span class="log-time">
+                                                4m ago
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Trust / intro -->
+        <section class="intro-section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        Everything in one place
+                    </span>
+
+                    <h2>
+                        Stop digging through terminal output.
+                    </h2>
+
+                    <p>
+                        Send your application events to Lucian Logs and get
+                        a clearer picture of what your software is doing.
+                    </p>
+
+                </div>
+
+
+                <div class="quick-stats">
+
+                    <div class="quick-stat">
+                        <strong>24/7</strong>
+                        <span>Application visibility</span>
+                    </div>
+
+                    <div class="quick-stat">
+                        <strong>Real-time</strong>
+                        <span>Log ingestion</span>
+                    </div>
+
+                    <div class="quick-stat">
+                        <strong>API-first</strong>
+                        <span>Developer workflow</span>
+                    </div>
+
+                    <div class="quick-stat">
+                        <strong>One place</strong>
+                        <span>For your project logs</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+        <section class="features-section" id="features">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        Features
+                    </span>
+
+                    <h2>
+                        The visibility your application needs.
+                    </h2>
+
+                    <p>
+                        Focus on building your product while Lucian Logs
+                        helps you understand what is happening behind the scenes.
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ◈
+                        </div>
+
+                        <h3>
+                            Centralized logging
+                        </h3>
+
+                        <p>
+                            Bring application events from your projects
+                            into one organized dashboard instead of searching
+                            through multiple terminals and servers.
+                        </p>
+
+                        <a href="#how-it-works" class="feature-link">
+                            Learn more →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Real-time events
+                        </h3>
+
+                        <p>
+                            See new application events as they arrive and
+                            quickly identify unusual activity, failed requests,
+                            or unexpected behavior.
+                        </p>
+
+                        <a href="#how-it-works" class="feature-link">
+                            Learn more →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ⚠
+                        </div>
+
+                        <h3>
+                            Error visibility
+                        </h3>
+
+                        <p>
+                            Separate important errors from normal application
+                            activity so you can focus your attention on the
+                            problems that actually need investigation.
+                        </p>
+
+                        <a href="#how-it-works" class="feature-link">
+                            Learn more →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ◉
+                        </div>
+
+                        <h3>
+                            Project monitoring
+                        </h3>
+
+                        <p>
+                            Keep logs organized by project and give every
+                            application its own monitoring environment and
+                            API credentials.
+                        </p>
+
+                        <a href="#how-it-works" class="feature-link">
+                            Learn more →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            #
+                        </div>
+
+                        <h3>
+                            Developer-friendly API
+                        </h3>
+
+                        <p>
+                            Connect your existing applications through a
+                            straightforward API without rebuilding your
+                            development workflow.
+                        </p>
+
+                        <a href="#how-it-works" class="feature-link">
+                            Learn more →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ◌
+                        </div>
+
+                        <h3>
+                            Clean dashboard
+                        </h3>
+
+                        <p>
+                            Get the information you need without unnecessary
+                            complexity. Designed to keep monitoring simple
+                            and understandable.
+                        </p>
+
+                        <a href="#how-it-works" class="feature-link">
+                            Learn more →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- How it works -->
+        <section class="how-section" id="how-it-works">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        How it works
+                    </span>
+
+                    <h2>
+                        From your application to your dashboard.
+                    </h2>
+
+                    <p>
+                        Start monitoring your application in a few simple steps.
+                    </p>
+
+                </div>
+
+
+                <div class="steps">
+
+                    <article class="step">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-content">
+
+                            <h3>
+                                Create a project
+                            </h3>
+
+                            <p>
+                                Create a project in Lucian Logs and get the
+                                credentials needed to connect your application.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="step">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-content">
+
+                            <h3>
+                                Send your logs
+                            </h3>
+
+                            <p>
+                                Connect your application to the Lucian Logs API
+                                and start sending useful events from your code.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="step">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-content">
+
+                            <h3>
+                                Monitor your application
+                            </h3>
+
+                            <p>
+                                Open your dashboard to inspect activity, identify
+                                errors, and understand what is happening in your app.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="step">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <div class="step-content">
+
+                            <h3>
+                                Fix issues faster
+                            </h3>
+
+                            <p>
+                                Use the information from your logs to investigate
+                                problems and get your application back on track.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Use cases -->
+        <section class="use-cases-section" id="use-cases">
+
+            <div class="container">
+
+                <div class="use-cases-grid">
+
+                    <div class="use-cases-copy">
+
+                        <span class="eyebrow">
+                            Built for real projects
+                        </span>
+
+                        <h2>
+                            Whether you're building a startup or your next side project.
+                        </h2>
+
+                        <p>
+                            Lucian Logs is designed around the way developers
+                            actually work: build, deploy, monitor, investigate,
+                            and improve.
+                        </p>
+
+                        <a href="/register.html" class="btn btn-primary">
+                            Create your project
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="use-cases-list">
+
+                        <div class="use-case">
+
+                            <span class="use-case-icon">
+                                ◇
+                            </span>
+
+                            <div>
+                                <h3>
+                                    Backend applications
+                                </h3>
+
+                                <p>
+                                    Monitor API requests, server events,
+                                    authentication activity, and failures.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="use-case">
+
+                            <span class="use-case-icon">
+                                ◇
+                            </span>
+
+                            <div>
+                                <h3>
+                                    SaaS products
+                                </h3>
+
+                                <p>
+                                    Keep application activity organized across
+                                    the projects powering your product.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="use-case">
+
+                            <span class="use-case-icon">
+                                ◇
+                            </span>
+
+                            <div>
+                                <h3>
+                                    Student projects
+                                </h3>
+
+                                <p>
+                                    Learn practical application monitoring while
+                                    keeping your development projects easier to debug.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="use-case">
+
+                            <span class="use-case-icon">
+                                ◇
+                            </span>
+
+                            <div>
+                                <h3>
+                                    Production systems
+                                </h3>
+
+                                <p>
+                                    Keep an eye on deployed applications and
+                                    investigate unexpected behavior.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Developer section -->
+        <section class="developer-section">
+
+            <div class="container">
+
+                <div class="developer-card">
+
+                    <div class="developer-copy">
+
+                        <span class="eyebrow">
+                            Developer first
+                        </span>
+
+                        <h2>
+                            Your logs should work with your code,
+                            not against it.
+                        </h2>
+
+                        <p>
+                            Lucian Logs is built around a simple API-based
+                            workflow so developers can integrate monitoring
+                            into applications they already have.
+                        </p>
+
+                        <div class="developer-actions">
+
+                            <a href="/register.html" class="btn btn-primary">
+                                Start building
+                            </a>
+
+                            <a href="#" class="btn btn-ghost">
+                                Read documentation
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="code-window">
+
+                        <div class="code-header">
+
+                            <div class="code-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span>
+                                example.js
+                            </span>
+
+                        </div>
+
+
+                        <pre><code>const lucianLogs = require("lucian-logs");
+
+await lucianLogs.log({
+level: "error",
+message: "Payment request failed",
+project: "my-app"
+});</code></pre>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-card">
+
+                    <span class="eyebrow">
+                        Start monitoring
+                    </span>
+
+                    <h2>
+                        Build with confidence.
+                    </h2>
+
+                    <p>
+                        Get a clearer view of your application and spend less
+                        time wondering what went wrong.
+                    </p>
+
+                    <div class="cta-actions">
+
+                        <a href="/register.html" class="btn btn-primary btn-large">
+                            Create your account
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a href="/login.html" class="btn btn-ghost btn-large">
+                            Sign in
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a href="/" class="logo">
+                        <span class="logo-mark">◆</span>
+                        <span>Lucian Logs</span>
+                    </a>
+
+                    <p>
+                        Simple application monitoring and logging
+                        for developers.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Product
+                        </h3>
+
+                        <a href="#features">
+                            Features
+                        </a>
+
+                        <a href="#how-it-works">
+                            How it works
+                        </a>
+
+                        <a href="#">
+                            Documentation
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Account
+                        </h3>
+
+                        <a href="/login.html">
+                            Login
+                        </a>
+
+                        <a href="/register.html">
+                            Create account
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Legal
+                        </h3>
+
+                        <a href="#">
+                            Privacy
+                        </a>
+
+                        <a href="#">
+                            Terms
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © <span id="currentYear"></span> Lucian Logs.
+                    All rights reserved.
+                </span>
+
+                <span>
+                    Built for developers.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script src="/js/landing.js"></script>
+</body>
+</html>

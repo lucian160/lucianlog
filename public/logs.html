@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucian Logs — Logs</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span>◆</span> Lucian Logs</div>
+    <nav>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/logs.html" class="active">Logs</a>
+      <a href="/api-keys.html">API Keys</a>
+      <a href="/settings.html">Settings</a>
+    </nav>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">EVENT STREAM</p>
+        <h1>Logs</h1>
+      </div>
+      <div class="user-menu">
+        <span id="userName">Workspace</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">FILTERS</p>
+          <h2>Recent Events</h2>
+        </div>
+        <button id="refreshBtn">Refresh</button>
+      </div>
+
+      <div class="filters-bar">
+        <div class="filter-group search-group">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" type="text" placeholder="Search message, endpoint, stack..." />
+        </div>
+
+        <div class="filter-group">
+          <label for="levelFilter">Level</label>
+          <select id="levelFilter">
+            <option value="">All levels</option>
+            <option value="info">Info</option>
+            <option value="warn">Warning</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter">
+            <option value="">All status codes</option>
+            <option value="200">200</option>
+            <option value="201">201</option>
+            <option value="400">400</option>
+            <option value="401">401</option>
+            <option value="403">403</option>
+            <option value="404">404</option>
+            <option value="500">500</option>
+          </select>
+        </div>
+
+        <div class="filter-actions">
+          <button id="applyFiltersBtn" class="primary-btn">Apply</button>
+          <button id="clearFiltersBtn" class="secondary-btn">Clear</button>
+        </div>
+      </div>
+
+      <div id="logsContainer">
+        <p>Loading logs...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/logs.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucian Logs — Verify Email</title>
+  <link rel="stylesheet" href="/css/auth.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-card">
+      <div class="brand">
+        <span>◆</span>
+        Lucian Logs
+      </div>
+
+      <div class="auth-heading">
+        <p class="eyebrow">VERIFY</p>
+        <h1>Confirm your email</h1>
+        <p>Enter the 6-digit code sent to your inbox.</p>
+      </div>
+
+      <form id="verifyEmailForm">
+        <div class="form-group">
+          <label for="verifyEmailInput">Email</label>
+          <input type="email" id="verifyEmailInput" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="verificationCode">Verification code</label>
+          <input type="text" id="verificationCode" placeholder="123456" inputmode="numeric" maxlength="6" required />
+        </div>
+
+        <div id="verifyEmailMessage" class="message"></div>
+
+        <button type="submit" id="verifyEmailBtn" class="primary-btn">Verify email</button>
+      </form>
+
+      <p class="auth-footer">
+        Need a new code?
+        <button id="resendOtpBtn" type="button" class="secondary-btn">Resend OTP</button>
+      </p>
+    </div>
+  </main>
+
+  <script src="/js/verify-email.js"></script>
+</body>
+</html>

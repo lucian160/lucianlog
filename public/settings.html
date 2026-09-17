@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucian Logs — Settings</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span>◆</span> Lucian Logs</div>
+    <nav>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/logs.html">Logs</a>
+      <a href="/api-keys.html">API Keys</a>
+      <a href="/settings.html" class="active">Settings</a>
+    </nav>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ACCOUNT</p>
+        <h1>Settings</h1>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">PROFILE</p>
+          <h2>Account Details</h2>
+        </div>
+      </div>
+
+      <div id="accountInfo" class="latest-log">
+        <p>Loading account details...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">SECURITY</p>
+          <h2>Firewall Protection</h2>
+        </div>
+      </div>
+
+      <div id="firewallInfo" class="latest-log">
+        <p>Loading firewall status...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">REQUEST</p>
+          <h2>Request Firewall Approval</h2>
+        </div>
+      </div>
+
+      <form id="firewallRequestForm" class="auth-form">
+        <div class="form-group">
+          <label for="requestedIp">IP address</label>
+          <input id="requestedIp" name="requestedIp" type="text" placeholder="203.0.113.10" required />
+        </div>
+
+        <div class="form-group">
+          <label for="requestNote">Reason or note</label>
+          <textarea id="requestNote" name="requestNote" rows="3" placeholder="Describe why this IP requires approval."></textarea>
+        </div>
+
+        <button type="submit" class="primary-btn">Submit request</button>
+      </form>
+      <p id="requestStatus" class="status-message"></p>
+    </section>
+  </main>
+
+  <script src="/js/settings.js"></script>
+</body>
+</html>

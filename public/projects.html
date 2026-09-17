@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lucian Logs — Projects</title>
+
+  <link rel="stylesheet" href="/css/projects.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <span>◆</span>
+      Lucian Logs
+    </div>
+
+    <nav>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/projects.html" class="active">Projects</a>
+      <a href="/logs.html">Logs</a>
+      <a href="/api-keys.html">API Keys</a>
+      <a href="/settings.html">Settings</a>
+    </nav>
+
+    <button id="logoutBtn" class="logout-btn">
+      Logout
+    </button>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div>
+        <p class="eyebrow">PROJECT MANAGEMENT</p>
+        <h1>Projects</h1>
+      </div>
+
+      <button id="createProjectBtn" class="primary-btn">
+        + New Project
+      </button>
+
+    </header>
+
+
+    <section class="project-summary">
+
+      <div class="summary-card">
+        <span class="summary-label">Total Projects</span>
+        <strong id="projectCount">0</strong>
+      </div>
+
+      <div class="summary-card">
+        <span class="summary-label">Active Project</span>
+        <strong id="activeProjectName">None</strong>
+      </div>
+
+    </section>
+
+
+    <section class="panel">
+
+      <div class="panel-header">
+
+        <div>
+          <p class="eyebrow">YOUR PROJECTS</p>
+          <h2>Project List</h2>
+        </div>
+
+      </div>
+
+      <div id="projectsContainer" class="projects-container">
+
+        <div id="emptyState" class="empty-state">
+
+          <div class="empty-icon">◆</div>
+
+          <h3>No projects yet</h3>
+
+          <p>
+            Create your first project to start collecting logs.
+          </p>
+
+          <button id="emptyCreateBtn" class="primary-btn">
+            Create Project
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- CREATE PROJECT MODAL -->
+
+  <div id="projectModal" class="modal hidden">
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <div>
+          <p class="eyebrow">NEW PROJECT</p>
+          <h2>Create Project</h2>
+        </div>
+
+        <button id="closeModalBtn" class="close-btn">
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="projectForm">
+
+        <div class="form-group">
+
+          <label for="projectName">
+            Project Name
+          </label>
+
+          <input
+            type="text"
+            id="projectName"
+            name="projectName"
+            placeholder="e.g. FoodSeller API"
+            maxlength="50"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="projectDescription">
+            Description
+          </label>
+
+          <textarea
+            id="projectDescription"
+            name="projectDescription"
+            placeholder="What is this project used for?"
+            maxlength="200"
+            rows="4"
+          ></textarea>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            id="cancelBtn"
+            class="secondary-btn"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="primary-btn"
+          >
+            Create Project
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <script src="/js/projects.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucian Logs — API Keys</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span>◆</span> Lucian Logs</div>
+    <nav>
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/logs.html">Logs</a>
+      <a href="/api-keys.html" class="active">API Keys</a>
+      <a href="/settings.html">Settings</a>
+    </nav>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PROJECT ACCESS</p>
+        <h1>API Keys</h1>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">ACTIVE KEY</p>
+          <h2>Current Project Key</h2>
+        </div>
+        <button id="copyKeyBtn">Copy</button>
+      </div>
+
+      <div class="status-box">
+        <div style="width:100%;">
+          <strong id="projectApiKeyLabel">No project selected</strong>
+          <p id="projectApiKeyValue">Select a project to view or generate an API key.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/api-keys.js"></script>
+</body>
+</html>
