@@ -49,6 +49,16 @@ async function sendOtpEmail({ to, otp, purpose = "verification" }) {
 
   if (!response.ok) {
     console.error("Resend email failed:", result);
+
+    if ([401, 403].includes(response.status)) {
+      console.log(`[${purpose.toUpperCase()} OTP - TERMINAL FALLBACK] ${otp} -> ${to}`);
+      return {
+        mocked: true,
+        fallback: true,
+        message: "Resend rejected the email; OTP was printed to the terminal instead."
+      };
+    }
+
     throw new Error(result.message || "Failed to send verification email");
   }
 
