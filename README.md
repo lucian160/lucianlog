@@ -181,7 +181,7 @@ MONGO_URI=mongodb://localhost:27017/lucianlogs
 JWT_SECRET=replace_with_a_secure_secret
 
 RESEND_API_KEY=
-RESEND_FROM_EMAIL=onboarding@resend.dev
+RESEND_FROM_EMAIL=no-reply@luciantechhub.jo3.org
 
 CORS_ORIGIN=http://localhost:5000
 
@@ -973,8 +973,8 @@ Follow the command provided by PM2.
 ### Email
 
 * [ ] Configure `RESEND_API_KEY`
-* [ ] Configure `RESEND_FROM_EMAIL`
-* [ ] Use an appropriate verified sender in production
+* [x] Configure `RESEND_FROM_EMAIL` with a sender on the verified `luciantechhub.jo3.org` domain
+* [x] Use an appropriate verified sender in production
 * [ ] Handle email delivery failures
 * [ ] Rate-limit OTP requests
 

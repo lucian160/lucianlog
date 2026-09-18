@@ -14,7 +14,7 @@ function generateOtp(length = 6) {
 
 async function sendOtpEmail({ to, otp, purpose = "verification" }) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fromAddress = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+  const fromAddress = process.env.RESEND_FROM_EMAIL || "no-reply@luciantechhub.jo3.org";
 
   if (!resendApiKey) {
     console.log(`[${purpose.toUpperCase()} OTP] ${otp} -> ${to}`);
