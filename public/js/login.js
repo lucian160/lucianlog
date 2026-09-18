@@ -112,7 +112,9 @@ loginForm.addEventListener(
       setTimeout(() => {
 
         window.location.href =
-          "/projects.html";
+          data.user?.role === "admin"
+            ? "/admin.html"
+            : "/projects.html";
 
       }, 500);
 
