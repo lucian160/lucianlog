@@ -329,6 +329,8 @@ projectForm.addEventListener(
 async function selectProject(
   projectId
 ) {
+  localStorage.removeItem(API_KEY_KEY);
+
   setSelectedProjectId(
     projectId
   );

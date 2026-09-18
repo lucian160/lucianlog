@@ -1,7 +1,7 @@
 const API_BASE = "/api";
 const TOKEN_KEY = "lucianToken";
-const API_KEY_KEY = "lucianApiKey";
 const SELECTED_PROJECT_KEY = "lucianLogsSelectedProject";
+const API_KEY_KEY = "lucianApiKey";
 
 const logsContainer = document.getElementById("logsContainer");
 const logoutBtn = document.getElementById("logoutBtn");
@@ -12,29 +12,25 @@ const statusFilter = document.getElementById("statusFilter");
 const applyFiltersBtn = document.getElementById("applyFiltersBtn");
 const clearFiltersBtn = document.getElementById("clearFiltersBtn");
 
-function getApiKey() {
-  return localStorage.getItem(API_KEY_KEY);
-}
-
 function requireProjectAccess() {
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    logsContainer.innerHTML = "<p>No active project API key found. Please select or create a project.</p>";
+  const token = localStorage.getItem(TOKEN_KEY);
+  if (!token) {
+    logsContainer.innerHTML = "<p>Please log in to view project logs.</p>";
     return null;
   }
-  return apiKey;
+  return token;
 }
 
 async function apiRequest(endpoint, options = {}) {
-  const apiKey = requireProjectAccess();
-  if (!apiKey) return null;
+  const token = requireProjectAccess();
+  if (!token) return null;
 
   const response = await fetch(`${API_BASE}${endpoint}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
       ...(options.headers || {}),
-      "x-api-key": apiKey
+      Authorization: `Bearer ${token}`
     }
   });
 
@@ -82,6 +78,10 @@ function renderLogs(logs) {
 function getFilterParams() {
   const params = new URLSearchParams();
   params.set("limit", "50");
+  params.set(
+    "projectId",
+    localStorage.getItem(SELECTED_PROJECT_KEY) || localStorage.getItem("lucianProjectId") || ""
+  );
 
   const level = levelFilter?.value?.trim();
   const statusCode = statusFilter?.value?.trim();

@@ -41,16 +41,18 @@ The platform is designed to give developers a centralized view of application ac
 
 Lucian Logs is meant to help you collect, monitor, and investigate application activity from one place.
 
-The basic flow is simple:
+The complete user flow is:
 
 ```text
-1. Create an account
+1. Create a Lucian Logs account
 2. Verify your email
-3. Create a project
-4. Copy the project API key
-5. Connect your app or service to Lucian Logs
-6. Send logs with your API key
-7. View, filter, and analyze logs from the dashboard
+3. Log in
+4. Create a project
+5. Get the project API key
+6. Connect your application
+7. The application sends logs
+8. Logs appear automatically
+9. Search, filter, and investigate logs
 ```
 
 ### Core idea
@@ -78,27 +80,15 @@ This means the system works like a central logging backend for your services. Yo
 
 ## Documentation
 
-### Quick start for new users
+### Quick start for users
 
-1. Install the project dependencies:
+1. Open the hosted Lucian Logs website and create an account.
 
-```bash
-npm install
-```
+2. Verify the email using the one-time code, then log in.
 
-2. Copy the example environment file:
+3. Create a project and copy its generated API key. If the key is no longer available, use **Generate new key** on the API Keys page.
 
-```bash
-cp .env.example .env
-```
-
-3. Update the environment variables in `.env` with your MongoDB connection and optional email settings.
-
-4. Start the application:
-
-```bash
-npm start
-```
+4. Add the API key to your server-side application and send logs to the Lucian Logs API.
 
 5. Open the app in the browser:
 
@@ -154,59 +144,30 @@ The developer fixes the bug and deploys again
 
 This is the simplest way to understand the purpose of Lucian Logs: it turns scattered application events into a searchable, centralized record that your team can inspect quickly.
 
-## Requirements
+## API integration
 
-Before running Lucian Logs, install:
+You do not need to install an SDK or package. Generate a project API key in the Lucian Logs website, keep it on your server, and send JSON directly to the API. Logs are assigned to the project represented by the key and appear automatically in its Dashboard and Logs pages.
 
-* Node.js 20 or newer
-* MongoDB
-* npm
-
-Optional:
-
-* Resend account for email verification, password-reset, and notification emails
-* Docker for containerized deployment
-* PM2 for Node.js process management
-
-Check your Node.js version:
-
-```bash
-node -v
+```js
+await fetch("https://your-lucian-logs-host.example/api/logs", {
+   method: "POST",
+   headers: {
+      "Content-Type": "application/json",
+      "x-api-key": process.env.LUCIAN_LOGS_API_KEY
+   },
+   body: JSON.stringify({
+      level: "error",
+      message: "Payment request failed",
+      statusCode: 500,
+      endpoint: "/api/payments",
+      method: "POST"
+   })
+});
 ```
 
-Check npm:
+After the API responds with `201`, the log is associated with the project and appears in that project's Dashboard and Logs pages. Keep the API key private and never expose it in browser code.
 
-```bash
-npm -v
-```
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone <your-repository-url>
-```
-
-Move into the project directory:
-
-```bash
-cd lucian-logs
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Create the environment file:
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and configure the required values.
+When the Lucian firewall is enabled, include the configured approval header with the value supplied by the administrator. The default header is `x-lucian-approval`.
 
 ## Environment Variables
 
@@ -224,6 +185,9 @@ RESEND_FROM_EMAIL=onboarding@resend.dev
 
 CORS_ORIGIN=http://localhost:5000
 
+# Only true when running behind a trusted reverse proxy such as Nginx or Cloudflare.
+TRUST_PROXY=false
+
 LUCIAN_FIREWALL_ENABLED=false
 LUCIAN_ALLOWED_IPS=203.0.113.10,198.51.100.22
 LUCIAN_FIREWALL_APPROVAL_TOKEN=developer-approved
@@ -240,6 +204,7 @@ LUCIAN_FIREWALL_HEADER=x-lucian-approval
 | `RESEND_API_KEY`                 | No       | Resend API key for email functionality        |
 | `RESEND_FROM_EMAIL`              | No       | Email address used to send application emails |
 | `CORS_ORIGIN`                    | No       | Allowed browser origin for cross-origin calls |
+| `TRUST_PROXY`                    | No       | Trust forwarded client IPs from a known reverse proxy |
 | `LUCIAN_FIREWALL_ENABLED`        | No       | Enables or disables the firewall              |
 | `LUCIAN_ALLOWED_IPS`             | No       | Comma-separated list of trusted IP addresses  |
 | `LUCIAN_FIREWALL_APPROVAL_TOKEN` | No       | Token used by the firewall approval mechanism |
@@ -248,6 +213,14 @@ LUCIAN_FIREWALL_HEADER=x-lucian-approval
 Never commit real secrets to Git.
 
 The `.env` file should remain local or be managed securely through the deployment platform.
+
+### Security deployment notes
+
+- Serve the API over HTTPS. Terminate TLS at Nginx, Cloudflare, or your hosting platform.
+- Keep project API keys in server-side environment variables and send them in the `x-api-key` header.
+- Use a WAF such as Cloudflare for bot filtering and DDoS protection.
+- Leave `TRUST_PROXY=false` when clients connect directly to Node. Set it to `true` only when a trusted reverse proxy is in front of the app.
+- Treat firewall IP allowlists as an optional extra restriction for fixed servers, not as the identity of users whose IP addresses change.
 
 ## Running Locally
 
@@ -907,13 +880,7 @@ For production, use a secure MongoDB instance and provide production environment
 
 ## PM2 Deployment
 
-Install PM2:
-
-```bash
-npm install -g pm2
-```
-
-Start the application using the project's ecosystem configuration:
+Start the application using the project's ecosystem configuration after preparing the server environment:
 
 ```bash
 pm2 start ecosystem.config.js

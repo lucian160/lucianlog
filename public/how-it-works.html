@@ -158,47 +158,47 @@
       </div>
 
       <div class="eyebrow page-title"><span class="eyebrow-dot"></span> How it works</div>
-      <h1 style="font-size: clamp(2rem, 3vw, 3rem); margin: 0 0 12px;">From your app to your dashboard.</h1>
+      <h1 style="font-size: clamp(2rem, 3vw, 3rem); margin: 0 0 12px;">One key connects your app to your logs.</h1>
       <p style="margin: 0; max-width: 760px; color: #9db0c5; line-height: 1.8;">
-        Lucian Logs collects data from your services, stores it securely, and makes it easy to inspect later with filters, summaries, and dashboards.
+        You use the website to manage projects and investigate logs. Your application uses a project API key to send logs. That is the whole connection.
       </p>
 
       <div class="flow">
         <article class="step-card">
           <div class="step-number">01</div>
-          <h3>Create a project</h3>
-          <p>Log in, create a project, and get a unique API key for that app or service.</p>
+          <h3>Create your account</h3>
+          <p>Register, verify your email, and log in to the Lucian Logs website.</p>
         </article>
 
         <article class="step-card">
           <div class="step-number">02</div>
-          <h3>Send logs</h3>
-          <p>Your application sends log events to the Lucian Logs API using the project key.</p>
+          <h3>Create a project</h3>
+          <p>Create one project for the application or service you want to monitor.</p>
         </article>
 
         <article class="step-card">
           <div class="step-number">03</div>
-          <h3>Store and organize</h3>
-          <p>The server validates the key, stores the log data, and organizes it by project.</p>
+          <h3>Connect with the key</h3>
+          <p>Copy the project API key and store it securely on your application server.</p>
         </article>
 
         <article class="step-card">
           <div class="step-number">04</div>
-          <h3>Monitor and fix</h3>
-          <p>The dashboard shows recent activity so you can identify issues and respond faster.</p>
+          <h3>Send and investigate</h3>
+          <p>Your app sends logs to the API. They then appear in the project Dashboard and Logs pages.</p>
         </article>
       </div>
 
       <div class="diagram">
-        <p>Simple flow</p>
+        <p>What talks to what</p>
         <div class="diagram-boxes">
-          <div class="box">Your app</div>
+          <div class="box">You<br><small>Account login</small></div>
           <div class="arrow">→</div>
-          <div class="box">Lucian Logs API</div>
+          <div class="box">Lucian Logs website<br><small>Projects and dashboard</small></div>
           <div class="arrow">→</div>
-          <div class="box">MongoDB</div>
+          <div class="box">Your app<br><small>Project API key</small></div>
           <div class="arrow">→</div>
-          <div class="box">Dashboard</div>
+          <div class="box">Lucian Logs API<br><small>Stores project logs</small></div>
         </div>
       </div>
 
@@ -212,13 +212,13 @@
         <div class="flow" style="margin-top: 12px; grid-template-columns: repeat(2, minmax(0, 1fr));">
           <article class="step-card">
             <div class="step-number">FAQ</div>
-            <h3>Why do I need API keys?</h3>
-            <p>They let each project securely authenticate its own log submissions without exposing shared credentials.</p>
+            <h3>What is the API key for?</h3>
+            <p>It proves that an incoming log belongs to a specific project. Use it for server-to-server log submissions only.</p>
           </article>
           <article class="step-card">
             <div class="step-number">FAQ</div>
-            <h3>Can I monitor uptime?</h3>
-            <p>Yes. Use the health endpoint to monitor the app through tools like UptimeRobot or a custom checker.</p>
+            <h3>What protects the connection?</h3>
+            <p>Use HTTPS, keep the key private, and rely on rate limiting, validation, and the optional firewall for additional protection.</p>
           </article>
         </div>
       </div>

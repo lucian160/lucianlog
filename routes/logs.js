@@ -2,13 +2,24 @@ const express = require("express");
 
 const Log = require("../models/Log");
 const authenticateApiKey = require("../middleware/apiKey");
+const logAccess = require("../middleware/logAccess");
+const projectLogRateLimiter = require("../middleware/projectRateLimiter");
 const { buildLogFilter } = require("../utils/logQuery");
+const { validateLogPayload } = require("../utils/logValidators");
 
 const router = express.Router();
 
 // SAVE LOG
-router.post("/", authenticateApiKey, async (req, res) => {
+router.post("/", authenticateApiKey, projectLogRateLimiter, async (req, res) => {
   try {
+    const validationErrors = validateLogPayload(req.body);
+    if (validationErrors.length) {
+      return res.status(400).json({
+        message: "Invalid log data",
+        errors: validationErrors
+      });
+    }
+
     const log = await Log.create({
       ...req.body,
       projectId: req.project._id,
@@ -40,7 +51,7 @@ router.post("/", authenticateApiKey, async (req, res) => {
 });
 
 // GET DASHBOARD SUMMARY
-router.get("/summary", authenticateApiKey, async (req, res) => {
+router.get("/summary", logAccess, async (req, res) => {
   try {
     const projectId = req.project._id;
 
@@ -95,7 +106,7 @@ router.get("/summary", authenticateApiKey, async (req, res) => {
 });
 
 // GET PROJECT LOG STATISTICS
-router.get("/stats", authenticateApiKey, async (req, res) => {
+router.get("/stats", logAccess, async (req, res) => {
   try {
     const period = req.query.period || "24h";
 
@@ -222,7 +233,7 @@ router.get("/stats", authenticateApiKey, async (req, res) => {
 });
 
 // GET PROJECT LOGS
-router.get("/", authenticateApiKey, async (req, res) => {
+router.get("/", logAccess, async (req, res) => {
   try {
     const page = Math.max(Number(req.query.page) || 1, 1);
     const limit = Math.min(

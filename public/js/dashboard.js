@@ -1,7 +1,7 @@
 const API_BASE = "/api";
 
 const projectId = localStorage.getItem("lucianProjectId");
-const apiKey = localStorage.getItem("lucianApiKey");
+const token = localStorage.getItem("lucianToken");
 
 const totalLogsEl = document.getElementById("totalLogs");
 const errorCountEl = document.getElementById("errorCount");
@@ -24,7 +24,7 @@ async function apiRequest(endpoint, options = {}) {
 
     headers: {
       ...(options.headers || {}),
-      "x-api-key": apiKey
+      Authorization: `Bearer ${token}`
     }
   });
 
@@ -42,7 +42,7 @@ async function apiRequest(endpoint, options = {}) {
 
 async function loadSummary() {
   try {
-    const data = await apiRequest("/logs/summary");
+    const data = await apiRequest(`/logs/summary?projectId=${encodeURIComponent(projectId)}`);
 
     totalLogsEl.textContent = data.totalLogs;
     errorCountEl.textContent = data.errors;
@@ -100,7 +100,7 @@ async function loadLogs() {
 
   try {
 
-    const data = await apiRequest("/logs?limit=10");
+    const data = await apiRequest(`/logs?projectId=${encodeURIComponent(projectId)}&limit=10`);
 
     renderLogs(data.logs);
 
@@ -274,7 +274,7 @@ function escapeHtml(value) {
 
 
 /* INITIAL LOAD */
-if (!projectId || !apiKey) {
+if (!projectId || !token) {
 
   latestLogEl.innerHTML = `
     <p>

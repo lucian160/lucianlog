@@ -67,15 +67,10 @@ function createFirewallMiddleware(options = {}) {
   };
 
   return function firewallMiddleware(req, res, next) {
-    const forwarded = req.headers["x-forwarded-for"];
-    const clientIp = Array.isArray(forwarded)
-      ? forwarded[0]
-      : String(forwarded || "").split(",")[0].trim();
-
     const decision = buildFirewallDecision({
       enabled: config.enabled,
       allowedIps: config.allowedIps,
-      reqIp: clientIp || req.ip || req.socket?.remoteAddress || "",
+      reqIp: req.ip || req.socket?.remoteAddress || "",
       approvalToken: config.approvalToken,
       requiredApprovalHeader: config.requiredApprovalHeader,
       approvalHeader:

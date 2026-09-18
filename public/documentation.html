@@ -202,10 +202,9 @@
         </div>
 
         <div class="eyebrow"><span class="eyebrow-dot"></span> Documentation</div>
-        <h1>How to use Lucian Logs</h1>
+        <h1>Send logs. Find answers.</h1>
         <p>
-          Lucian Logs helps developers capture application activity, inspect logs, and understand errors from one place.
-          This page explains the setup flow and the basic usage model for new users.
+          Create an account, connect an application with one project API key, and view the logs from your Lucian Logs dashboard.
         </p>
       </header>
 
@@ -213,75 +212,48 @@
         <aside class="doc-sidebar">
           <h3>On this page</h3>
           <nav>
-            <a href="#overview">Overview</a>
-            <a href="#install">Install</a>
-            <a href="#configure">Configure</a>
-            <a href="#project-flow">Project flow</a>
+            <a href="#start">Start here</a>
+            <a href="#account">Account and project</a>
+            <a href="#connect">Connect an app</a>
             <a href="#send-logs">Send logs</a>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#monitoring">Monitoring</a>
-            <a href="#faq">FAQ</a>
+            <a href="#view-logs">View and investigate</a>
+            <a href="#security">Security</a>
+            <a href="#faq">Questions</a>
           </nav>
         </aside>
 
         <main class="doc-content">
-          <section class="doc-section" id="overview">
-            <h2>Overview</h2>
+          <section class="doc-section" id="start">
+            <h2>Start here</h2>
             <p>
-              Lucian Logs is a simple monitoring platform for collecting and searching application logs.
-              The main workflow is: create an account, create a project, generate an API key, send logs from your app,
-              and then view the results in the dashboard.
+              Lucian Logs has two connected parts. The website is where you create projects and investigate logs.
+              The API is where your application sends log events.
             </p>
-            <p>
-              Each project represents an application or service you want to track. Logs are organized by project and can be
-              filtered by message, status code, level, endpoint, or other useful metadata.
-            </p>
-          </section>
-
-          <section class="doc-section" id="install">
-            <h2>Install</h2>
-            <p>Run the following commands in the project folder:</p>
-            <pre><code>npm install
-cp .env.example .env</code></pre>
-            <p>Then update the values in <code>.env</code> for your MongoDB URL and other required settings.</p>
-          </section>
-
-          <section class="doc-section" id="configure">
-            <h2>Configure the environment</h2>
-            <p>Minimum settings usually include:</p>
-            <ul>
-              <li><code>PORT</code> — the server port</li>
-              <li><code>MONGO_URI</code> — the MongoDB connection string</li>
-              <li><code>JWT_SECRET</code> — your secure secret for authentication</li>
-              <li><code>CORS_ORIGIN</code> — the allowed frontend origin</li>
-            </ul>
-            <p>
-              Optional settings include email delivery through Resend, firewall rules, and monitoring configuration.
-            </p>
-            <pre><code>PORT=5000
-MONGO_URI=mongodb://localhost:27017/lucianlogs
-JWT_SECRET=replace_with_a_secure_secret
-CORS_ORIGIN=http://localhost:5000</code></pre>
-          </section>
-
-          <section class="doc-section" id="project-flow">
-            <h2>Project flow</h2>
-            <p>The typical flow looks like this:</p>
             <ol>
-              <li>Create an account and verify your email.</li>
-              <li>Create a project from the dashboard.</li>
-              <li>Copy the generated project API key.</li>
-              <li>Use that key in your app to submit log data.</li>
-              <li>Open the dashboard and inspect errors, warnings, and recent activity.</li>
+              <li>Create your account and verify your email.</li>
+              <li>Log in and create a project for the application you want to monitor.</li>
+              <li>Copy the project API key.</li>
+              <li>Configure your application to send logs with that key.</li>
+              <li>Return to the dashboard to search and investigate the logs.</li>
             </ol>
-            <p>
-              Keep the project API key private. It should not be placed in public frontend code or a public repository.
-            </p>
+          </section>
+
+          <section class="doc-section" id="account">
+            <h2>Account and project</h2>
+            <p>Your Lucian Logs account is for people. Use your email and password to sign in to the website.</p>
+            <p>A project represents one application or service. Each project has its own API key and its own logs.</p>
+            <p>The API key is shown when a project is created. You can generate a replacement key from the API Keys page, but the old key stops working immediately.</p>
+          </section>
+
+          <section class="doc-section" id="connect">
+            <h2>Connect an application</h2>
+            <p>You do not need to install an SDK or package. Your server sends a normal HTTPS request to the Lucian Logs API.</p>
+            <p>Store the project API key as a server-side environment variable. Do not put it in browser JavaScript, mobile app code, screenshots, or public repositories.</p>
           </section>
 
           <section class="doc-section" id="send-logs">
             <h2>Send logs from your app</h2>
-            <p>Logs are sent to the API using the project API key in the request header:</p>
+            <p>Send a <code>POST</code> request to <code>/api/logs</code>. Put the project key in the <code>x-api-key</code> header.</p>
             <pre><code>fetch("/api/logs", {
   method: "POST",
   headers: {
@@ -297,43 +269,34 @@ CORS_ORIGIN=http://localhost:5000</code></pre>
   })
 });</code></pre>
             <p>
-              This makes Lucian Logs a place where your app can send operational information, errors, and important events for tracking.
+              A successful request returns <code>201</code>. The log is saved under the project connected to that API key.
             </p>
+            <p>Only send logs from your server. If the firewall is enabled for your deployment, your server must also send the configured approval header.</p>
           </section>
 
-          <section class="doc-section" id="dashboard">
-            <h2>Use the dashboard</h2>
-            <p>The dashboard provides access to:</p>
+          <section class="doc-section" id="view-logs">
+            <h2>View and investigate logs</h2>
+            <p>Log in to the website, select the project, and open Dashboard or Logs. New logs appear there automatically after the API accepts them.</p>
             <ul>
-              <li>Project activity</li>
-              <li>Recent log entries</li>
-              <li>Error and warning summaries</li>
-              <li>Search and filtering tools</li>
-              <li>Project and user management</li>
+              <li>Use Dashboard for totals, error rates, warnings, and the latest activity.</li>
+              <li>Use Logs to search by message, endpoint, method, level, or status code.</li>
+              <li>Use the project API key only for sending logs; your account login is used to view them.</li>
             </ul>
-            <p>
-              You can search by message, endpoint, method, log level, or HTTP status to investigate an issue faster.
-            </p>
           </section>
 
-          <section class="doc-section" id="monitoring">
-            <h2>Monitoring and uptime</h2>
-            <p>
-              Lucian Logs also exposes a health endpoint so monitoring tools such as UptimeRobot can check that the service is running.
-            </p>
-            <pre><code>http://localhost:5000/health</code></pre>
-            <p>
-              This endpoint returns a simple JSON response with the application status and timestamp, making it easy to verify that the app is online.
-            </p>
+          <section class="doc-section" id="security">
+            <h2>Security and firewall</h2>
+            <p>Account passwords and dashboard access use your verified account login. Application log submissions use the project API key. These are separate credentials.</p>
+            <p>Use HTTPS in production and keep API keys private. Rate limiting and payload validation protect the API from accidental or abusive traffic.</p>
+            <p>The firewall is an additional restriction for trusted deployments. IP allowlists are best for fixed servers; they are not a reliable identity check for people whose home or mobile IP changes.</p>
           </section>
 
           <section class="doc-section" id="faq">
-            <h2>Frequently asked questions</h2>
+            <h2>Questions</h2>
             <ul>
-              <li><strong>Do I need MongoDB?</strong> Yes. Lucian Logs stores project and log data in MongoDB.</li>
-              <li><strong>Can I use this without email setup?</strong> Yes, but email verification and password reset may print OTP codes in the server terminal instead of sending them.</li>
-              <li><strong>Where do I send logs from?</strong> Use the project API key and send requests to the log API endpoint.</li>
-              <li><strong>What is the health endpoint used for?</strong> It lets uptime and monitoring tools confirm that your app is still online.</li>
+              <li><strong>Do I need to install anything?</strong> No SDK or package is required. Send JSON over HTTPS.</li>
+              <li><strong>Why are my logs not visible?</strong> Confirm that the request returned <code>201</code>, that the API key belongs to the selected project, and that you are viewing that same project.</li>
+              <li><strong>Can I use one key for multiple apps?</strong> You can, but separate projects and keys make investigations clearer and limit the impact of a leaked key.</li>
             </ul>
           </section>
         </main>

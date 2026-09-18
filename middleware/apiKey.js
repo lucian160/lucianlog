@@ -5,7 +5,6 @@ module.exports = async (req, res, next) => {
   const incomingKey =
     req.headers["x-api-key"] ||
     req.headers["X-API-Key"] ||
-    req.query.apiKey ||
     "";
 
   if (!incomingKey) {

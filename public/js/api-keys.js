@@ -6,6 +6,7 @@ const API_KEY_KEY = "lucianApiKey";
 const projectApiKeyValue = document.getElementById("projectApiKeyValue");
 const projectApiKeyLabel = document.getElementById("projectApiKeyLabel");
 const copyKeyBtn = document.getElementById("copyKeyBtn");
+const regenerateKeyBtn = document.getElementById("regenerateKeyBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 
 function requireToken() {
@@ -96,6 +97,38 @@ copyKeyBtn.addEventListener("click", async () => {
     setTimeout(() => (copyKeyBtn.textContent = "Copy"), 1500);
   } catch (error) {
     alert("Could not copy the API key. Please copy it manually.");
+  }
+});
+
+regenerateKeyBtn.addEventListener("click", async () => {
+  const projectId = localStorage.getItem(SELECTED_PROJECT_KEY) || localStorage.getItem(PROJECT_ID_KEY);
+  if (!projectId) {
+    alert("Select a project first.");
+    return;
+  }
+
+  if (!confirm("Generate a new API key? The current key will stop working immediately.")) {
+    return;
+  }
+
+  regenerateKeyBtn.disabled = true;
+  regenerateKeyBtn.textContent = "Generating...";
+
+  try {
+    const data = await apiRequest(`/projects/${projectId}/regenerate-key`, { method: "POST" });
+    const newKey = data.project?.apiKey;
+
+    if (!newKey) {
+      throw new Error("The server did not return a new API key.");
+    }
+
+    localStorage.setItem(API_KEY_KEY, newKey);
+    projectApiKeyValue.textContent = newKey;
+  } catch (error) {
+    projectApiKeyValue.textContent = error.message;
+  } finally {
+    regenerateKeyBtn.disabled = false;
+    regenerateKeyBtn.textContent = "Generate new key";
   }
 });
 
